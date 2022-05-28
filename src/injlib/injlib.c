@@ -1282,6 +1282,13 @@ InjCreateProcessNotifyRoutineEx(
   _Inout_opt_ PPS_CREATE_NOTIFY_INFO CreateInfo
   )
 {
+  const char* target_process = "notepad.exe";
+  InjDbgPrint("Process Creation Notification: NAME=%s", PsGetProcessImageFileName(Process));
+  if (strcmp(PsGetProcessImageFileName(Process), target_process) != 0) {
+    InjDbgPrint("Not %s, will ignore it.", target_process);
+    return;
+  }
+
   UNREFERENCED_PARAMETER(Process);
 
   if (CreateInfo)

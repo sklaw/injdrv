@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerCommandArguments>
+    </LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <RemoteDebuggerCommand>C:\Users\win_insider_guest_1\Desktop\VS_deploy\bin\$(PlatformShortName)\$(Configuration)\injldr.exe</RemoteDebuggerCommand>
+    <RemoteDebuggerServerName>DESKTOP-6N5HGJ2:4024</RemoteDebuggerServerName>
+    <RemoteDebuggerCommandArguments>-i</RemoteDebuggerCommandArguments>
+    <DeploymentDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\bin\$(PlatformShortName)\$(Configuration)\</DeploymentDirectory>
+    <RemoteDebuggerWorkingDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\bin\$(PlatformShortName)\$(Configuration)\</RemoteDebuggerWorkingDirectory>
+    <AdditionalFiles>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\*</AdditionalFiles>
+    <LocalDebuggerCommand />
+  </PropertyGroup>
+</Project>
