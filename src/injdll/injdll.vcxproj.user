@@ -7,7 +7,7 @@
     <RemoteDebuggerDebuggerType>NativeOnly</RemoteDebuggerDebuggerType>
     <RemoteDebuggerDeployCppRuntime>false</RemoteDebuggerDeployCppRuntime>
     <RemoteDebuggerCommand>notepad.exe</RemoteDebuggerCommand>
-    <RemoteDebuggerWorkingDirectory>C:\Users\win_insider_guest_1\Desktop\VS_pwd</RemoteDebuggerWorkingDirectory>
+    <RemoteDebuggerWorkingDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\bin\$(PlatformShortName)\$(Configuration)\</RemoteDebuggerWorkingDirectory>
     <DeploymentDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\bin\$(PlatformShortName)\$(Configuration)\</DeploymentDirectory>
     <RemoteDebuggerCommandArguments> helloworld.txt</RemoteDebuggerCommandArguments>
   </PropertyGroup>

