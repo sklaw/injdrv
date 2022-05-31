@@ -9,7 +9,7 @@
     <RemoteDebuggerCommandArguments>-i</RemoteDebuggerCommandArguments>
     <DeploymentDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\bin\$(PlatformShortName)\$(Configuration)\</DeploymentDirectory>
     <RemoteDebuggerWorkingDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\bin\$(PlatformShortName)\$(Configuration)\</RemoteDebuggerWorkingDirectory>
-    <AdditionalFiles>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\*</AdditionalFiles>
+    <AdditionalFiles>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.sys;$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.cer </AdditionalFiles>
     <LocalDebuggerCommand />
   </PropertyGroup>
 </Project>
