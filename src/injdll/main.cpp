@@ -1,6 +1,7 @@
 #define _ARM_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE 1
 
 #include "wow64log.h"
+#include <windows.h>
 
 //
 // Include NTDLL-related headers.
@@ -255,6 +256,41 @@ DisableDetours(
   return STATUS_SUCCESS;
 }
 
+// SK: 20 pointer arguments should be enoguh to capture
+// wmain or WinMain __stdcall arguments.
+typedef void (*process_entry_point_signature)(
+  void* arg_1, void* arg_2, void* arg_3,
+  void* arg_4, void* arg_5, void* arg_6,
+  void* arg_7, void* arg_8, void* arg_9,
+  void* arg_10, void* arg_11, void* arg_12, void* arg_13,
+  void* arg_14, void* arg_15, void* arg_16,
+  void* arg_17, void* arg_18, void* arg_19,
+  void* arg_20);
+static process_entry_point_signature trampoline_process_entry_point;
+void hook_process_entry_point(void* arg_1, void* arg_2, void* arg_3,
+  void* arg_4, void* arg_5, void* arg_6,
+  void* arg_7, void* arg_8, void* arg_9,
+  void* arg_10, void* arg_11, void* arg_12, void* arg_13,
+  void* arg_14, void* arg_15, void* arg_16,
+  void* arg_17, void* arg_18, void* arg_19,
+  void* arg_20) {
+  DetourTransactionBegin();
+  DetourDetach((PVOID*)&trampoline_process_entry_point, hook_process_entry_point);
+  DetourTransactionCommit();
+
+  // SK: Load stage 2 DLL
+
+
+
+  trampoline_process_entry_point(arg_1, arg_2, arg_3,
+    arg_4, arg_5, arg_6,
+    arg_7, arg_8, arg_9,
+    arg_10, arg_11, arg_12, arg_13,
+    arg_14, arg_15, arg_16,
+    arg_17, arg_18, arg_19,
+    arg_20);
+}
+
 NTSTATUS
 NTAPI
 OnProcessAttach(
@@ -359,6 +395,22 @@ OnProcessAttach(
   //
   // Hook all functions.
   //
+
+
+  PPEB peb = NtCurrentPeb();
+  PVOID pImage = peb->ImageBaseAddress;
+
+  PVOID pEntry;
+  PIMAGE_NT_HEADERS pNtHeaders;
+
+  pNtHeaders = (PIMAGE_NT_HEADERS)((PCHAR)pImage + ((PIMAGE_DOS_HEADER)pImage)->e_lfanew);
+  pEntry = (PVOID)((PCHAR)pImage + pNtHeaders->OptionalHeader.AddressOfEntryPoint);
+
+  trampoline_process_entry_point = (process_entry_point_signature)pEntry;
+
+  DetourTransactionBegin();
+  DetourAttach((PVOID*)&trampoline_process_entry_point, hook_process_entry_point);
+  DetourTransactionCommit();
 
   return EnableDetours();
 }

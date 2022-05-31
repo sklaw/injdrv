@@ -8,7 +8,10 @@
     <RemoteDebuggerDeployCppRuntime>false</RemoteDebuggerDeployCppRuntime>
     <RemoteDebuggerCommand>notepad.exe</RemoteDebuggerCommand>
     <RemoteDebuggerWorkingDirectory>C:\Users\win_insider_guest_1\Desktop\VS_pwd</RemoteDebuggerWorkingDirectory>
-    <DeploymentDirectory>
-    </DeploymentDirectory>
+    <DeploymentDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\bin\$(PlatformShortName)\$(Configuration)\</DeploymentDirectory>
+    <RemoteDebuggerCommandArguments> helloworld.txt</RemoteDebuggerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
