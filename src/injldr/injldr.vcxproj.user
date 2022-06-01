@@ -4,12 +4,22 @@
     <LocalDebuggerCommandArguments>
     </LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
-    <RemoteDebuggerCommand>C:\Users\win_insider_guest_1\Desktop\VS_deploy\bin\$(PlatformShortName)\$(Configuration)\injldr.exe</RemoteDebuggerCommand>
+    <RemoteDebuggerCommand>
+    </RemoteDebuggerCommand>
     <RemoteDebuggerServerName>DESKTOP-6N5HGJ2:4024</RemoteDebuggerServerName>
-    <RemoteDebuggerCommandArguments>-i</RemoteDebuggerCommandArguments>
-    <DeploymentDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\bin\$(PlatformShortName)\$(Configuration)\</DeploymentDirectory>
-    <RemoteDebuggerWorkingDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\bin\$(PlatformShortName)\$(Configuration)\</RemoteDebuggerWorkingDirectory>
+    <RemoteDebuggerCommandArguments>
+    </RemoteDebuggerCommandArguments>
+    <DeploymentDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\</DeploymentDirectory>
+    <RemoteDebuggerWorkingDirectory>
+    </RemoteDebuggerWorkingDirectory>
     <AdditionalFiles>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.sys;$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.cer </AdditionalFiles>
     <LocalDebuggerCommand />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <RemoteDebuggerWorkingDirectory />
+    <RemoteDebuggerServerName>DESKTOP-6N5HGJ2:4024</RemoteDebuggerServerName>
+    <DeploymentDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\</DeploymentDirectory>
+    <AdditionalFiles>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.sys;$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.cer </AdditionalFiles>
   </PropertyGroup>
 </Project>

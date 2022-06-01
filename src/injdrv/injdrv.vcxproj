@@ -78,6 +78,9 @@
     <DriverSign>
       <FileDigestAlgorithm Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">SHA256</FileDigestAlgorithm>
     </DriverSign>
+    <DriverSign>
+      <FileDigestAlgorithm Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">SHA256</FileDigestAlgorithm>
+    </DriverSign>
   </ItemDefinitionGroup>
   <!-- Debug -->
   <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">

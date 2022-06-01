@@ -9,8 +9,22 @@
 #define NTDLL_NO_INLINE_INIT_STRING
 #include <ntdll.h>
 
+#define STAGE2DLLNAMEPREFIX L"stage2_DLL"
+
 #if defined(_M_IX86)
-#  define ARCH_A          "x86"
+#  define STAGE2DLLNAME         STAGE2DLLNAMEPREFIX L"x86.dll"
+#elif defined(_M_AMD64)
+#  define STAGE2DLLNAME          STAGE2DLLNAMEPREFIX L"x64.dll"
+#elif defined(_M_ARM)
+#  define STAGE2DLLNAME          STAGE2DLLNAMEPREFIX L"ARM32.dll"
+#elif defined(_M_ARM64)
+#  define STAGE2DLLNAME          STAGE2DLLNAMEPREFIX L"ARM64.dll"
+#else
+#  error Unknown architecture
+#endif
+
+#if defined(_M_IX86)
+#  define ARCH_A         "x86"
 #  define ARCH_W         L"x86"
 #elif defined(_M_AMD64)
 #  define ARCH_A          "x64"
@@ -283,7 +297,7 @@ void hook_process_entry_point(void* arg_1, void* arg_2, void* arg_3,
   PWSTR DllPath = NULL;
   ULONG DllCharacteristics = 0;
   UNICODE_STRING DllName;
-  RtlInitUnicodeString(&DllName, (PWSTR)L"stage2_DLL.dll");
+  RtlInitUnicodeString(&DllName, (PWSTR)STAGE2DLLNAME);
   PVOID DllHandle;
 
 

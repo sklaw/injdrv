@@ -7,11 +7,18 @@
     <RemoteDebuggerDebuggerType>NativeOnly</RemoteDebuggerDebuggerType>
     <RemoteDebuggerDeployCppRuntime>false</RemoteDebuggerDeployCppRuntime>
     <RemoteDebuggerCommand>notepad.exe</RemoteDebuggerCommand>
-    <RemoteDebuggerWorkingDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\bin\$(PlatformShortName)\$(Configuration)\</RemoteDebuggerWorkingDirectory>
-    <DeploymentDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\bin\$(PlatformShortName)\$(Configuration)\</DeploymentDirectory>
+    <RemoteDebuggerWorkingDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\</RemoteDebuggerWorkingDirectory>
+    <DeploymentDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\</DeploymentDirectory>
     <RemoteDebuggerCommandArguments> helloworld.txt</RemoteDebuggerCommandArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <RemoteDebuggerCommand>C:\Windows\SysWOW64\notepad.exe</RemoteDebuggerCommand>
+    <RemoteDebuggerCommandArguments> helloworld.txt</RemoteDebuggerCommandArguments>
+    <RemoteDebuggerWorkingDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\</RemoteDebuggerWorkingDirectory>
+    <RemoteDebuggerServerName>DESKTOP-6N5HGJ2:4024</RemoteDebuggerServerName>
+    <RemoteDebuggerDebuggerType>NativeOnly</RemoteDebuggerDebuggerType>
+    <DeploymentDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\</DeploymentDirectory>
+    <RemoteDebuggerDeployCppRuntime>false</RemoteDebuggerDeployCppRuntime>
   </PropertyGroup>
 </Project>

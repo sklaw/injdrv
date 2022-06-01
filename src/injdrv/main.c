@@ -249,7 +249,9 @@ DriverEntry(
 #if defined (_M_IX86)
   Settings.Method = InjMethodThunk;
 #elif defined (_M_AMD64)
-  Settings.Method = InjMethodThunkless;
+  //Settings.Method = InjMethodThunkless;
+  // SK: Match injected DLL's arch with program's 
+  Settings.Method = InjMethodThunk;
 #elif defined (_M_ARM64)
   Settings.Method = InjMethodWow64LogReparse;
 #endif
