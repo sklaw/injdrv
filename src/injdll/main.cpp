@@ -9,7 +9,7 @@
 #define NTDLL_NO_INLINE_INIT_STRING
 #include <ntdll.h>
 
-#define STAGE2DLLNAMEPREFIX L"stage2_DLL"
+#define STAGE2DLLNAMEPREFIX L"acs_dll"
 
 #if defined(_M_IX86)
 #  define STAGE2DLLNAME         STAGE2DLLNAMEPREFIX L"x86.dll"
@@ -241,15 +241,15 @@ EnableDetours(
   VOID
   )
 {
-  DetourTransactionBegin();
-  {
-    OrigNtQuerySystemInformation = NtQuerySystemInformation;
-    DetourAttach((PVOID*)&OrigNtQuerySystemInformation, HookNtQuerySystemInformation);
+  //DetourTransactionBegin();
+  //{
+  //  OrigNtQuerySystemInformation = NtQuerySystemInformation;
+  //  DetourAttach((PVOID*)&OrigNtQuerySystemInformation, HookNtQuerySystemInformation);
 
-    OrigNtCreateThreadEx = NtCreateThreadEx;
-    DetourAttach((PVOID*)&OrigNtCreateThreadEx, HookNtCreateThreadEx);
-  }
-  DetourTransactionCommit();
+  //  OrigNtCreateThreadEx = NtCreateThreadEx;
+  //  DetourAttach((PVOID*)&OrigNtCreateThreadEx, HookNtCreateThreadEx);
+  //}
+  //DetourTransactionCommit();
 
   return STATUS_SUCCESS;
 }
@@ -260,12 +260,12 @@ DisableDetours(
   VOID
   )
 {
-  DetourTransactionBegin();
-  {
-    DetourDetach((PVOID*)&OrigNtQuerySystemInformation, HookNtQuerySystemInformation);
-    DetourDetach((PVOID*)&OrigNtCreateThreadEx, HookNtCreateThreadEx);
-  }
-  DetourTransactionCommit();
+  //DetourTransactionBegin();
+  //{
+  //  DetourDetach((PVOID*)&OrigNtQuerySystemInformation, HookNtQuerySystemInformation);
+  //  DetourDetach((PVOID*)&OrigNtCreateThreadEx, HookNtCreateThreadEx);
+  //}
+  //DetourTransactionCommit();
 
   return STATUS_SUCCESS;
 }
