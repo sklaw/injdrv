@@ -272,7 +272,7 @@ DisableDetours(
 
 // SK: 20 pointer arguments should be enoguh to capture
 // wmain or WinMain __stdcall arguments.
-typedef void (*process_entry_point_signature)(
+typedef void (__stdcall *process_entry_point_signature)(
   void* arg_1, void* arg_2, void* arg_3,
   void* arg_4, void* arg_5, void* arg_6,
   void* arg_7, void* arg_8, void* arg_9,
@@ -281,7 +281,7 @@ typedef void (*process_entry_point_signature)(
   void* arg_17, void* arg_18, void* arg_19,
   void* arg_20);
 static process_entry_point_signature trampoline_process_entry_point;
-void hook_process_entry_point(void* arg_1, void* arg_2, void* arg_3,
+void __stdcall hook_process_entry_point(void* arg_1, void* arg_2, void* arg_3,
   void* arg_4, void* arg_5, void* arg_6,
   void* arg_7, void* arg_8, void* arg_9,
   void* arg_10, void* arg_11, void* arg_12, void* arg_13,
