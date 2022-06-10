@@ -42,10 +42,7 @@ TraceEventCallback(
   // TODO: Check that EventRecord contains only WCHAR string.
   //
 
-  wprintf(L"[PID:%04X][TID:%04X] %s\n",
-          EventRecord->EventHeader.ProcessId,
-          EventRecord->EventHeader.ThreadId,
-          (PWCHAR)EventRecord->UserData);
+  wprintf(L"%s\n", (PWCHAR)EventRecord->UserData);
 }
 
 ULONG
