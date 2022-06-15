@@ -1421,6 +1421,11 @@ InjLoadImageNotifyRoutine(
   }
   else
   {
+    UNICODE_STRING mscoreePath = RTL_CONSTANT_STRING(L"mscoree.dll");
+    if (RtlxSuffixUnicodeString(&mscoreePath, FullImageName, TRUE)) {
+      InjDbgPrint("[injlib]: Postponing injection (%wZ) due to mscoree\n", FullImageName);
+      return;
+    }
 #if defined(INJ_CONFIG_SUPPORTS_WOW64)
 
     if (InjIsWindows7 &&

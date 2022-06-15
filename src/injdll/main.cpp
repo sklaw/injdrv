@@ -433,10 +433,23 @@ OnProcessAttach(
   pNtHeaders = (PIMAGE_NT_HEADERS)((PCHAR)pImage + ((PIMAGE_DOS_HEADER)pImage)->e_lfanew);
   pEntry = (PVOID)((PCHAR)pImage + pNtHeaders->OptionalHeader.AddressOfEntryPoint);
 
+  if (pEntry == pImage) {
+    // AddressOfEntryPoint is 0; this seems to be a .NET PE
+    // Try to resolve _CorExeMain and hook it instead
+    RtlInitAnsiString(&RoutineName, (PSTR)"_CorExeMain");
+    RtlInitUnicodeString(&NtdllPath, (PWSTR)L"mscoree.dll");
+
+    NtdllHandle = NULL;
+    LdrGetDllHandle(NULL, 0, &NtdllPath, &NtdllHandle);
+    LdrGetProcedureAddress(NtdllHandle, &RoutineName, 0, (PVOID*)&pEntry);
+  }
+
   trampoline_process_entry_point = (process_entry_point_signature)pEntry;
 
   DetourTransactionBegin();
   DetourAttach((PVOID*)&trampoline_process_entry_point, hook_process_entry_point);
+  //OrigNtQuerySystemInformation = NtQuerySystemInformation;
+  //DetourAttach((PVOID*)&OrigNtQuerySystemInformation, HookNtQuerySystemInformation);
   DetourTransactionCommit();
 
   return EnableDetours();
