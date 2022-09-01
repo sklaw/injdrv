@@ -12,7 +12,7 @@
     <RemoteDebuggerCommandArguments> helloworld.txt</RemoteDebuggerCommandArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <RemoteDebuggerCommand>C:\Windows\SysWOW64\notepad.exe</RemoteDebuggerCommand>
     <RemoteDebuggerCommandArguments> helloworld.txt</RemoteDebuggerCommandArguments>
     <RemoteDebuggerWorkingDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\</RemoteDebuggerWorkingDirectory>

@@ -3,7 +3,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LocalDebuggerCommandArguments>
     </LocalDebuggerCommandArguments>
-    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <RemoteDebuggerCommand>notepad.exe</RemoteDebuggerCommand>
     <RemoteDebuggerServerName>DESKTOP-6N5HGJ2:4024</RemoteDebuggerServerName>
     <RemoteDebuggerCommandArguments>
@@ -16,11 +16,13 @@
     <RemoteDebuggerDeployCppRuntime>false</RemoteDebuggerDeployCppRuntime>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <RemoteDebuggerWorkingDirectory />
     <RemoteDebuggerServerName>DESKTOP-6N5HGJ2:4024</RemoteDebuggerServerName>
-    <DeploymentDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\</DeploymentDirectory>
-    <AdditionalFiles>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.sys;$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.cer </AdditionalFiles>
+    <DeploymentDirectory>
+    </DeploymentDirectory>
+    <AdditionalFiles>
+    </AdditionalFiles>
     <RemoteDebuggerCommand>notepad.exe</RemoteDebuggerCommand>
     <RemoteDebuggerDeployCppRuntime>false</RemoteDebuggerDeployCppRuntime>
   </PropertyGroup>
