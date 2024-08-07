@@ -997,12 +997,13 @@ InjCreateInjectionInfo(
   }
   else
   {
-    CapturedInjectionInfo = ExAllocatePool2(NonPagedPoolNx,
+    CapturedInjectionInfo = ExAllocatePool2(POOL_FLAG_NON_PAGED,
                                             sizeof(INJ_INJECTION_INFO),
                                             INJ_MEMORY_TAG);
 
     if (!CapturedInjectionInfo)
     {
+      InjDbgPrint("[injlib]: Failed to allocate memory for INJ_INJECTION_INFO\n");
       return STATUS_INSUFFICIENT_RESOURCES;
     }
 
@@ -1020,6 +1021,7 @@ InjCreateInjectionInfo(
 
   InsertTailList(&InjInfoListHead, &CapturedInjectionInfo->ListEntry);
 
+  InjDbgPrint("[injlib]: Injection info for process %u created\n", ProcessId);
   return STATUS_SUCCESS;
 }
 
