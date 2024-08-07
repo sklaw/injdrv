@@ -9,7 +9,7 @@
 #define NTDLL_NO_INLINE_INIT_STRING
 #include <ntdll.h>
 
-#define STAGE2DLLNAMEPREFIX L"C:\\Users\\win_insider_guest_1\\Desktop\\VS_deploy\\acs_dll"
+#define STAGE2DLLNAMEPREFIX L"C:\\SDAG\\SDAG-dll-sensor"
 
 #if defined(_M_IX86)
 #  define STAGE2DLLNAME         STAGE2DLLNAMEPREFIX L"x86.dll"

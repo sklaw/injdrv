@@ -2,12 +2,56 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
-    <DeploymentDirectory>
-    </DeploymentDirectory>
-    <RemoteDebuggerServerName>
-    </RemoteDebuggerServerName>
+    <DeploymentDirectory>C:\SDAG</DeploymentDirectory>
+    <RemoteDebuggerServerName>DESKTOP-961OFOR:4026</RemoteDebuggerServerName>
     <RemoteDebuggerWorkingDirectory>
     </RemoteDebuggerWorkingDirectory>
     <RemoteDebuggerDeployCppRuntime>false</RemoteDebuggerDeployCppRuntime>
+    <RemoteDebuggerCommand>notepad.exe</RemoteDebuggerCommand>
+    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <RemoteDebuggerAttach>true</RemoteDebuggerAttach>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DeploymentDirectory>C:\SDAG</DeploymentDirectory>
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <RemoteDebuggerWorkingDirectory>
+    </RemoteDebuggerWorkingDirectory>
+    <RemoteDebuggerServerName>DESKTOP-961OFOR:4026</RemoteDebuggerServerName>
+    <RemoteDebuggerCommand>notepad.exe</RemoteDebuggerCommand>
+    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <RemoteDebuggerDeployCppRuntime>false</RemoteDebuggerDeployCppRuntime>
+    <RemoteDebuggerAttach>true</RemoteDebuggerAttach>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <RemoteDebuggerCommand>notepad.exe</RemoteDebuggerCommand>
+    <RemoteDebuggerWorkingDirectory />
+    <RemoteDebuggerServerName>DESKTOP-961OFOR:4026</RemoteDebuggerServerName>
+    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <RemoteDebuggerAttach>true</RemoteDebuggerAttach>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <RemoteDebuggerCommand>notepad.exe</RemoteDebuggerCommand>
+    <RemoteDebuggerWorkingDirectory />
+    <RemoteDebuggerServerName>DESKTOP-961OFOR:4026</RemoteDebuggerServerName>
+    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <RemoteDebuggerAttach>true</RemoteDebuggerAttach>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <RemoteDebuggerCommand>notepad.exe</RemoteDebuggerCommand>
+    <RemoteDebuggerWorkingDirectory />
+    <RemoteDebuggerServerName>DESKTOP-961OFOR:4026</RemoteDebuggerServerName>
+    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <RemoteDebuggerAttach>true</RemoteDebuggerAttach>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <RemoteDebuggerCommand>notepad.exe</RemoteDebuggerCommand>
+    <RemoteDebuggerWorkingDirectory />
+    <RemoteDebuggerServerName>DESKTOP-961OFOR:4026</RemoteDebuggerServerName>
+    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <RemoteDebuggerAttach>true</RemoteDebuggerAttach>
   </PropertyGroup>
 </Project>
