@@ -3,87 +3,87 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <RemoteDebuggerAttach>false</RemoteDebuggerAttach>
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
-    <RemoteDebuggerServerName>DESKTOP-961OFOR:4026</RemoteDebuggerServerName>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
     <RemoteDebuggerDebuggerType>NativeOnly</RemoteDebuggerDebuggerType>
-    <RemoteDebuggerDeployCppRuntime>false</RemoteDebuggerDeployCppRuntime>
+    <RemoteDebuggerDeployCppRuntime>true</RemoteDebuggerDeployCppRuntime>
     <RemoteDebuggerCommand>C:\Windows/notepad.exe</RemoteDebuggerCommand>
     <RemoteDebuggerWorkingDirectory>C:\SDAG</RemoteDebuggerWorkingDirectory>
-    <DeploymentDirectory>C:\SDAG</DeploymentDirectory>
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
     <RemoteDebuggerCommandArguments>
     </RemoteDebuggerCommandArguments>
-    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
-    <RemoteDebuggerCommand>C:\Windows/notepad.exe</RemoteDebuggerCommand>
+    <RemoteDebuggerCommand>C:\Windows\SysWOW64\notepad.exe</RemoteDebuggerCommand>
     <RemoteDebuggerCommandArguments>
     </RemoteDebuggerCommandArguments>
     <RemoteDebuggerWorkingDirectory>C:\SDAG</RemoteDebuggerWorkingDirectory>
-    <RemoteDebuggerServerName>DESKTOP-961OFOR:4026</RemoteDebuggerServerName>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
     <RemoteDebuggerDebuggerType>NativeOnly</RemoteDebuggerDebuggerType>
-    <DeploymentDirectory>C:\SDAG</DeploymentDirectory>
-    <RemoteDebuggerDeployCppRuntime>false</RemoteDebuggerDeployCppRuntime>
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
+    <RemoteDebuggerDeployCppRuntime>true</RemoteDebuggerDeployCppRuntime>
     <RemoteDebuggerAttach>false</RemoteDebuggerAttach>
-    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <RemoteDebuggerCommand>C:\Windows/notepad.exe</RemoteDebuggerCommand>
     <RemoteDebuggerWorkingDirectory>C:\SDAG</RemoteDebuggerWorkingDirectory>
-    <RemoteDebuggerServerName>DESKTOP-961OFOR:4026</RemoteDebuggerServerName>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
     <RemoteDebuggerDebuggerType>NativeOnly</RemoteDebuggerDebuggerType>
     <RemoteDebuggerAttach>false</RemoteDebuggerAttach>
-    <DeploymentDirectory>C:\SDAG</DeploymentDirectory>
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
-    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <RemoteDebuggerCommand>C:\Windows/notepad.exe</RemoteDebuggerCommand>
     <RemoteDebuggerWorkingDirectory>C:\SDAG</RemoteDebuggerWorkingDirectory>
-    <RemoteDebuggerServerName>DESKTOP-961OFOR:4026</RemoteDebuggerServerName>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
     <RemoteDebuggerDebuggerType>NativeOnly</RemoteDebuggerDebuggerType>
     <RemoteDebuggerAttach>false</RemoteDebuggerAttach>
-    <DeploymentDirectory>C:\SDAG</DeploymentDirectory>
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
-    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <RemoteDebuggerCommand>C:\Windows/notepad.exe</RemoteDebuggerCommand>
     <RemoteDebuggerWorkingDirectory>C:\SDAG</RemoteDebuggerWorkingDirectory>
-    <RemoteDebuggerServerName>DESKTOP-961OFOR:4026</RemoteDebuggerServerName>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
     <RemoteDebuggerDebuggerType>NativeOnly</RemoteDebuggerDebuggerType>
     <RemoteDebuggerAttach>false</RemoteDebuggerAttach>
-    <DeploymentDirectory>C:\SDAG</DeploymentDirectory>
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
-    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <RemoteDebuggerCommand>C:\Windows/notepad.exe</RemoteDebuggerCommand>
     <RemoteDebuggerWorkingDirectory>C:\SDAG</RemoteDebuggerWorkingDirectory>
-    <RemoteDebuggerServerName>DESKTOP-961OFOR:4026</RemoteDebuggerServerName>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
     <RemoteDebuggerDebuggerType>NativeOnly</RemoteDebuggerDebuggerType>
     <RemoteDebuggerAttach>false</RemoteDebuggerAttach>
-    <DeploymentDirectory>C:\SDAG</DeploymentDirectory>
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
-    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <RemoteDebuggerCommand>C:\Windows/notepad.exe</RemoteDebuggerCommand>
+    <RemoteDebuggerCommand>C:\Windows\SysWOW64\notepad.exe</RemoteDebuggerCommand>
     <RemoteDebuggerWorkingDirectory>C:\SDAG</RemoteDebuggerWorkingDirectory>
-    <RemoteDebuggerServerName>DESKTOP-961OFOR:4026</RemoteDebuggerServerName>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
     <RemoteDebuggerDebuggerType>NativeOnly</RemoteDebuggerDebuggerType>
     <RemoteDebuggerAttach>false</RemoteDebuggerAttach>
-    <DeploymentDirectory>C:\SDAG</DeploymentDirectory>
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
-    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <RemoteDebuggerCommand>C:\Windows/notepad.exe</RemoteDebuggerCommand>
     <RemoteDebuggerWorkingDirectory>C:\SDAG</RemoteDebuggerWorkingDirectory>
-    <RemoteDebuggerServerName>DESKTOP-961OFOR:4026</RemoteDebuggerServerName>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
     <RemoteDebuggerDebuggerType>NativeOnly</RemoteDebuggerDebuggerType>
     <RemoteDebuggerAttach>false</RemoteDebuggerAttach>
-    <DeploymentDirectory>C:\SDAG</DeploymentDirectory>
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
-    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
   </PropertyGroup>
 </Project>

@@ -9,16 +9,13 @@
 #define NTDLL_NO_INLINE_INIT_STRING
 #include <ntdll.h>
 
-#define STAGE2DLLNAMEPREFIX L"C:\\SDAG\\SDAG-dll-sensor"
+#define STAGE2DLLPATHPREFIX L"C:\\SDAG\\acs_dll\\"
+#define STAGE2DLLNAME L"acs_dll.dll"
 
 #if defined(_M_IX86)
-#  define STAGE2DLLNAME         STAGE2DLLNAMEPREFIX L"x86.dll"
+#  define STAGE2DLLPATH         STAGE2DLLPATHPREFIX L"x86" 
 #elif defined(_M_AMD64)
-#  define STAGE2DLLNAME          STAGE2DLLNAMEPREFIX L"x64.dll"
-#elif defined(_M_ARM)
-#  define STAGE2DLLNAME          STAGE2DLLNAMEPREFIX L"ARM32.dll"
-#elif defined(_M_ARM64)
-#  define STAGE2DLLNAME          STAGE2DLLNAMEPREFIX L"ARM64.dll"
+#  define STAGE2DLLPATH          STAGE2DLLPATHPREFIX L"x64"
 #else
 #  error Unknown architecture
 #endif
@@ -294,7 +291,7 @@ void __stdcall hook_process_entry_point(void* arg_1, void* arg_2, void* arg_3,
 
   // SK: Load stage 2 DLL
 
-  PWSTR DllPath = NULL;
+  PWSTR DllPath = (PWSTR)STAGE2DLLPATH;
   ULONG DllCharacteristics = 0;
   UNICODE_STRING DllName;
   RtlInitUnicodeString(&DllName, (PWSTR)STAGE2DLLNAME);
@@ -302,7 +299,7 @@ void __stdcall hook_process_entry_point(void* arg_1, void* arg_2, void* arg_3,
 
 
 
-  LdrLoadDll(
+  NTSTATUS result = LdrLoadDll(
     DllPath,
     &DllCharacteristics,
     &DllName,

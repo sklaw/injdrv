@@ -3,12 +3,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LocalDebuggerCommandArguments>
     </LocalDebuggerCommandArguments>
-    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
     <RemoteDebuggerCommand>notepad.exe</RemoteDebuggerCommand>
-    <RemoteDebuggerServerName>DESKTOP-6N5HGJ2:4024</RemoteDebuggerServerName>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
     <RemoteDebuggerCommandArguments>
     </RemoteDebuggerCommandArguments>
-    <DeploymentDirectory>C:\Users\win_insider_guest_1\Desktop\VS_deploy\</DeploymentDirectory>
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
     <RemoteDebuggerWorkingDirectory>
     </RemoteDebuggerWorkingDirectory>
     <AdditionalFiles>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.sys;$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.cer </AdditionalFiles>
@@ -16,14 +16,48 @@
     <RemoteDebuggerDeployCppRuntime>false</RemoteDebuggerDeployCppRuntime>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
     <RemoteDebuggerWorkingDirectory />
-    <RemoteDebuggerServerName>DESKTOP-6N5HGJ2:4024</RemoteDebuggerServerName>
-    <DeploymentDirectory>
-    </DeploymentDirectory>
-    <AdditionalFiles>
-    </AdditionalFiles>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
+    <AdditionalFiles>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.sys;$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.cer </AdditionalFiles>
     <RemoteDebuggerCommand>notepad.exe</RemoteDebuggerCommand>
     <RemoteDebuggerDeployCppRuntime>false</RemoteDebuggerDeployCppRuntime>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <AdditionalFiles>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.sys;$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.cer </AdditionalFiles>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <AdditionalFiles>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.sys;$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.cer </AdditionalFiles>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <AdditionalFiles>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.sys;$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.cer </AdditionalFiles>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <AdditionalFiles>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.sys;$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.cer </AdditionalFiles>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <AdditionalFiles>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.sys;$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.cer </AdditionalFiles>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <AdditionalFiles>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.sys;$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\injdrv.cer </AdditionalFiles>
+    <RemoteDebuggerServerName>192.168.1.34:4026</RemoteDebuggerServerName>
   </PropertyGroup>
 </Project>
