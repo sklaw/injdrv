@@ -239,38 +239,32 @@ int main(int argc, char* argv[])
 
   TraceStop();
 
-  //
-  // Parse command-line parameters.
-  //
+  
+  TCHAR DriverLocation[MAX_PATH];
+  SetupDriverName(DriverLocation, sizeof(DriverLocation));
 
-  if (argc == 2)
+  if (argc == 2 && !strcmp(argv[1], "-u"))
   {
-    TCHAR DriverLocation[MAX_PATH];
-    SetupDriverName(DriverLocation, sizeof(DriverLocation));
+    printf("Uninstalling driver...\n");
 
-    if (!strcmp(argv[1], "-i"))
+    DoInstallUninstall(FALSE);
+
+    return EXIT_SUCCESS;
+  }
+  else {
+    printf("Installing driver...\n");
+
+    if (DoInstallUninstall(TRUE))
     {
-      printf("Installing driver...\n");
-
-      if (DoInstallUninstall(TRUE))
-      {
-        printf("Driver installed!\n");
-      }
-      else
-      {
-        printf("Error!\n");
-        return EXIT_FAILURE;
-      }
+      printf("Driver installed!\n");
     }
-    else if (!strcmp(argv[1], "-u"))
+    else
     {
-      printf("Uninstalling driver...\n");
-
-      DoInstallUninstall(FALSE);
-
-      return EXIT_SUCCESS;
+      printf("Error!\n");
+      return EXIT_FAILURE;
     }
   }
+  
 
   printf("Starting tracing session...\n");
 
