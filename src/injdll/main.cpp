@@ -9,13 +9,15 @@
 #define NTDLL_NO_INLINE_INIT_STRING
 #include <ntdll.h>
 
-#define STAGE2DLLPATHPREFIX L"C:\\SDAG\\acs_dll\\"
-#define STAGE2DLLNAME L"acs_dll.dll"
+#define STAGE2DLLPATHPREFIX L"C:\\SDAG\\SDAG_dll_injection\\"
+
 
 #if defined(_M_IX86)
-#  define STAGE2DLLPATH         STAGE2DLLPATHPREFIX L"x86" 
+#define STAGE2DLLNAME L"SDAG_injected_dll_x86.dll"
+#define STAGE2DLLPATH STAGE2DLLPATHPREFIX STAGE2DLLNAME
 #elif defined(_M_AMD64)
-#  define STAGE2DLLPATH          STAGE2DLLPATHPREFIX L"x64"
+#define STAGE2DLLNAME L"SDAG_injected_dll_x64.dll"
+#define STAGE2DLLPATH STAGE2DLLPATHPREFIX STAGE2DLLNAME
 #else
 #  error Unknown architecture
 #endif
