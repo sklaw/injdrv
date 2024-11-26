@@ -9,18 +9,28 @@
 #define NTDLL_NO_INLINE_INIT_STRING
 #include <ntdll.h>
 
-#define STAGE2DLLPATHPREFIX L"C:\\SDAG\\SDAG_dll_injection\\"
 
 
+
+
+
+#define __STAGE2DLLPATHPREFIX_A(x) x"C:\\SDAG\\SDAG_dll_injection\\"
 #if defined(_M_IX86)
-#define STAGE2DLLNAME L"SDAG_injected_dll_x86.dll"
-#define STAGE2DLLPATH STAGE2DLLPATHPREFIX STAGE2DLLNAME
+#define __STAGE2DLLNAME_A(x) x"SDAG_injected_dll_x86.dll"
 #elif defined(_M_AMD64)
-#define STAGE2DLLNAME L"SDAG_injected_dll_x64.dll"
-#define STAGE2DLLPATH STAGE2DLLPATHPREFIX STAGE2DLLNAME
+#define __STAGE2DLLNAME_A(x) x"SDAG_injected_dll_x64.dll"
 #else
 #  error Unknown architecture
 #endif
+
+#define STAGE2DLLPATHPREFIX_A __STAGE2DLLPATHPREFIX_A("")
+#define STAGE2DLLNAME_A __STAGE2DLLNAME_A("")
+#define STAGE2DLLPATH_A STAGE2DLLPATHPREFIX_A STAGE2DLLNAME_A
+
+#define STAGE2DLLPATHPREFIX_W __STAGE2DLLPATHPREFIX_A(L)
+#define STAGE2DLLNAME_W __STAGE2DLLNAME_A(L)
+#define STAGE2DLLPATH_W STAGE2DLLPATHPREFIX_W STAGE2DLLNAME_W
+
 
 #if defined(_M_IX86)
 #  define ARCH_A         "x86"
@@ -74,6 +84,8 @@
 
 #include <detours.h>
 
+
+
 //
 // This is necessary for x86 builds because of SEH,
 // which is used by Detours.  Look at loadcfg.c file
@@ -113,6 +125,27 @@ using _snwprintf_fn_t = int (__cdecl*)(
   );
 
 inline _snwprintf_fn_t _snwprintf = nullptr;
+
+using _vsnprintf_fn_t = int(__cdecl*)(
+  char* buffer,
+  size_t count,
+  const char* format,
+  va_list argptr
+  );
+inline _vsnprintf_fn_t _vsnprintf = nullptr;
+
+void mydebugprint(const char* format, ...)
+{
+  if (_vsnprintf != nullptr)
+  {
+    va_list args;
+    va_start(args, format);
+    char buffer[1024];
+    _vsnprintf(buffer, RTL_NUMBER_OF(buffer), format, args);
+    va_end(args);
+    OutputDebugStringA(buffer);
+  }
+}
 
 //
 // ETW provider GUID and global provider handle.
@@ -277,10 +310,10 @@ void __stdcall hook_process_entry_point(void* arg_1, void* arg_2, void* arg_3,
 
   // SK: Load stage 2 DLL
 
-  PWSTR DllPath = (PWSTR)STAGE2DLLPATH;
+  /*PWSTR DllPath = (PWSTR)STAGE2DLLPATH_W;
   ULONG DllCharacteristics = 0;
   UNICODE_STRING DllName;
-  RtlInitUnicodeString(&DllName, (PWSTR)STAGE2DLLNAME);
+  RtlInitUnicodeString(&DllName, (PWSTR)STAGE2DLLNAME_W);
   PVOID DllHandle;
 
   NTSTATUS result = LdrLoadDll(
@@ -290,14 +323,21 @@ void __stdcall hook_process_entry_point(void* arg_1, void* arg_2, void* arg_3,
     &DllHandle
   );
 
-  OutputDebugStringW(STAGE2DLLPATH);
-  OutputDebugStringW(STAGE2DLLNAME);
+  mydebugprint("Stage 2 DLL path: %s", STAGE2DLLPATH_A);
+  OutputDebugStringW(STAGE2DLLPATH_W);
+  mydebugprint("Stage 2 DLL name: %s", STAGE2DLLNAME_A);
+  OutputDebugStringW(STAGE2DLLNAME_W);
 
   if (result != STATUS_SUCCESS) {
-    OutputDebugStringA("Failed to load DLL");
+    mydebugprint("Failed to load DLL. Return value: %x", result);
   }
   else {
     OutputDebugStringA("Loaded DLL");
+  }*/
+
+  HMODULE h = LoadLibraryA(STAGE2DLLPATH_A);
+  if (h == NULL) {
+    mydebugprint("Failed to load DLL from %s. GetLastError: %x", STAGE2DLLPATH_A, GetLastError());
   }
 
   trampoline_process_entry_point(arg_1, arg_2, arg_3,
@@ -361,7 +401,11 @@ OnProcessAttach(
 
   HANDLE NtdllHandle;
   LdrGetDllHandle(NULL, 0, &NtdllPath, &NtdllHandle);
+
   LdrGetProcedureAddress(NtdllHandle, &RoutineName, 0, (PVOID*)&_snwprintf);
+
+  RtlInitAnsiString(&RoutineName, (PSTR)"_vsnprintf");
+  LdrGetProcedureAddress(NtdllHandle, &RoutineName, 0, (PVOID*)&_vsnprintf);
 
   //
   // Make us unloadable (by FreeLibrary calls).
@@ -471,7 +515,10 @@ OnProcessAttach(
 
   trampoline_process_entry_point = (process_entry_point_signature)pEntry;
 
-  _snwprintf(Buffer, RTL_NUMBER_OF(Buffer), L"trampoline_process_entry_point: %p", trampoline_process_entry_point);
+  unsigned int first_byte = *(unsigned char*)trampoline_process_entry_point;
+
+  mydebugprint("trampoline_process_entry_point: %p, first byte: %x", trampoline_process_entry_point,
+    first_byte);
   OutputDebugStringW(Buffer);
 
   LONG detour_result;
