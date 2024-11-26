@@ -234,24 +234,7 @@ ThreadRoutine(
   }
 }
 
-NTSTATUS
-NTAPI
-EnableDetours(
-  VOID
-  )
-{
-  //DetourTransactionBegin();
-  //{
-  //  OrigNtQuerySystemInformation = NtQuerySystemInformation;
-  //  DetourAttach((PVOID*)&OrigNtQuerySystemInformation, HookNtQuerySystemInformation);
 
-  //  OrigNtCreateThreadEx = NtCreateThreadEx;
-  //  DetourAttach((PVOID*)&OrigNtCreateThreadEx, HookNtCreateThreadEx);
-  //}
-  //DetourTransactionCommit();
-
-  return STATUS_SUCCESS;
-}
 
 NTSTATUS
 NTAPI
@@ -286,7 +269,8 @@ void __stdcall hook_process_entry_point(void* arg_1, void* arg_2, void* arg_3,
   void* arg_10, void* arg_11, void* arg_12, void* arg_13,
   void* arg_14, void* arg_15, void* arg_16,
   void* arg_17, void* arg_18, void* arg_19,
-  void* arg_20) {
+  void* arg_20)
+{
   DetourTransactionBegin();
   DetourDetach((PVOID*)&trampoline_process_entry_point, hook_process_entry_point);
   DetourTransactionCommit();
@@ -299,14 +283,22 @@ void __stdcall hook_process_entry_point(void* arg_1, void* arg_2, void* arg_3,
   RtlInitUnicodeString(&DllName, (PWSTR)STAGE2DLLNAME);
   PVOID DllHandle;
 
-
-
   NTSTATUS result = LdrLoadDll(
     DllPath,
     &DllCharacteristics,
     &DllName,
     &DllHandle
   );
+
+  OutputDebugStringW(STAGE2DLLPATH);
+  OutputDebugStringW(STAGE2DLLNAME);
+
+  if (result != STATUS_SUCCESS) {
+    OutputDebugStringA("Failed to load DLL");
+  }
+  else {
+    OutputDebugStringA("Loaded DLL");
+  }
 
   trampoline_process_entry_point(arg_1, arg_2, arg_3,
     arg_4, arg_5, arg_6,
@@ -316,6 +308,40 @@ void __stdcall hook_process_entry_point(void* arg_1, void* arg_2, void* arg_3,
     arg_17, arg_18, arg_19,
     arg_20);
 }
+
+
+void print_detour_error(LONG detour_result) {
+  switch (detour_result) {
+  case NO_ERROR:
+    OutputDebugStringA("NO_ERROR");
+    break;
+  case ERROR_INVALID_BLOCK:
+    OutputDebugStringA("ERROR_INVALID_BLOCK");
+    break;
+  case ERROR_INVALID_HANDLE:
+    OutputDebugStringA("ERROR_INVALID_HANDLE");
+    break;
+  case ERROR_INVALID_OPERATION:
+    OutputDebugStringA("ERROR_INVALID_OPERATION");
+    break;
+  case ERROR_NOT_ENOUGH_MEMORY:
+    OutputDebugStringA("ERROR_NOT_ENOUGH_MEMORY");
+    break;
+  case ERROR_INVALID_PARAMETER:
+    OutputDebugStringA("ERROR_INVALID_PARAMETER");
+    break;
+  case ERROR_INVALID_DATA:
+    OutputDebugStringA("ERROR_INVALID_DATA");
+    break;
+  case ERROR_NOT_SUPPORTED:
+    OutputDebugStringA("ERROR_NOT_SUPPORTED");
+    break;
+  default:
+    OutputDebugStringA("Unknown error");
+    break;
+  }
+}
+
 
 NTSTATUS
 NTAPI
@@ -445,13 +471,35 @@ OnProcessAttach(
 
   trampoline_process_entry_point = (process_entry_point_signature)pEntry;
 
-  DetourTransactionBegin();
-  DetourAttach((PVOID*)&trampoline_process_entry_point, hook_process_entry_point);
-  //OrigNtQuerySystemInformation = NtQuerySystemInformation;
-  //DetourAttach((PVOID*)&OrigNtQuerySystemInformation, HookNtQuerySystemInformation);
-  DetourTransactionCommit();
+  _snwprintf(Buffer, RTL_NUMBER_OF(Buffer), L"trampoline_process_entry_point: %p", trampoline_process_entry_point);
+  OutputDebugStringW(Buffer);
 
-  return EnableDetours();
+  LONG detour_result;
+
+  detour_result = DetourTransactionBegin();
+
+  if (detour_result == NO_ERROR) {
+
+    detour_result = DetourAttach((PVOID*)&trampoline_process_entry_point, hook_process_entry_point);
+    if (detour_result != NO_ERROR) {
+      _snwprintf(Buffer, RTL_NUMBER_OF(Buffer), L"DetourAttach failed: %d", detour_result);
+      OutputDebugStringW(Buffer);
+      print_detour_error(detour_result);
+    }
+
+    detour_result = DetourTransactionCommit();
+    if (detour_result != NO_ERROR) {
+      _snwprintf(Buffer, RTL_NUMBER_OF(Buffer), L"DetourTransactionCommit failed: %d", detour_result);
+      OutputDebugStringW(Buffer);
+      print_detour_error(detour_result);
+    }
+  }
+  else {
+    OutputDebugStringA("DetourTransactionBegin failed");
+    print_detour_error(detour_result);
+  }
+
+  return STATUS_SUCCESS;
 }
 
 NTSTATUS
