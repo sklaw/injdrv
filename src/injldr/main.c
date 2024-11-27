@@ -208,18 +208,17 @@ CtrlCHandlerRoutine(
   _In_ DWORD dwCtrlType
   )
 {
-  if (dwCtrlType == CTRL_C_EVENT || dwCtrlType == CTRL_BREAK_EVENT)
+  switch (dwCtrlType)
   {
-    //
-    // Ctrl+C was pressed, stop the trace session.
-    //
-    printf("Ctrl+C pressed, stopping trace session...\n");
-
+  case CTRL_C_EVENT:
+  case CTRL_BREAK_EVENT:
+  case CTRL_CLOSE_EVENT:
+    printf("Stopping trace session...\n");
     TraceStop();
-
     printf("Uninstalling driver...\n");
-
     DoInstallUninstall(FALSE);
+    printf("Done.\n");
+    return TRUE;
   }
 
   return FALSE;
