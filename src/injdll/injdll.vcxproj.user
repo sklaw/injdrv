@@ -12,6 +12,7 @@
     <RemoteDebuggerCommandArguments>
     </RemoteDebuggerCommandArguments>
     <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
+    <AdditionalFiles>$(OutputPath)*.pdb</AdditionalFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
@@ -25,6 +26,7 @@
     <RemoteDebuggerDeployCppRuntime>true</RemoteDebuggerDeployCppRuntime>
     <RemoteDebuggerAttach>false</RemoteDebuggerAttach>
     <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
+    <AdditionalFiles>$(OutputPath)*.pdb</AdditionalFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <RemoteDebuggerCommand>C:\Windows/notepad.exe</RemoteDebuggerCommand>
@@ -35,6 +37,7 @@
     <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
     <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
+    <AdditionalFiles>$(OutputPath)*.pdb</AdditionalFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <RemoteDebuggerCommand>C:\Windows/notepad.exe</RemoteDebuggerCommand>
@@ -45,6 +48,7 @@
     <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
     <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
+    <AdditionalFiles>$(OutputPath)*.pdb</AdditionalFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <RemoteDebuggerCommand>C:\Windows/notepad.exe</RemoteDebuggerCommand>
@@ -55,6 +59,7 @@
     <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
     <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
+    <AdditionalFiles>$(OutputPath)*.pdb</AdditionalFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <RemoteDebuggerCommand>C:\Windows/notepad.exe</RemoteDebuggerCommand>
@@ -65,6 +70,7 @@
     <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
     <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
+    <AdditionalFiles>$(OutputPath)*.pdb</AdditionalFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <RemoteDebuggerCommand>C:\Windows\SysWOW64\notepad.exe</RemoteDebuggerCommand>
@@ -75,6 +81,7 @@
     <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
     <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
+    <AdditionalFiles>$(OutputPath)*.pdb</AdditionalFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <RemoteDebuggerCommand>C:\Windows/notepad.exe</RemoteDebuggerCommand>
@@ -85,5 +92,6 @@
     <DeploymentDirectory>C:\SDAG\$(SolutionName)\x64</DeploymentDirectory>
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
     <RemoteDebuggerConnection>RemoteWithAuthentication</RemoteDebuggerConnection>
+    <AdditionalFiles>$(OutputPath)*.pdb</AdditionalFiles>
   </PropertyGroup>
 </Project>

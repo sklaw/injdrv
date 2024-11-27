@@ -1276,6 +1276,52 @@ InjInject(
 // Notify routines.
 //////////////////////////////////////////////////////////////////////////
 
+
+int should_inject(PPS_CREATE_NOTIFY_INFO CreateInfo) {
+  int status = 1;
+  ANSI_STRING ImageFileName;
+  ANSI_STRING CommandLine;
+  int free_ImageFileName_on_exit = 0;
+  int free_CommandLine_on_exit = 0;
+
+  RtlInitAnsiString(&ImageFileName, NULL);
+  RtlInitAnsiString(&CommandLine, NULL);
+
+  if (status)
+    if (RtlUnicodeStringToAnsiString(&ImageFileName, CreateInfo->ImageFileName, TRUE) != STATUS_SUCCESS) {
+      InjDbgPrint("Failed to convert ImageFileName to ANSI_STRING\n");
+      status = 0;
+    }
+    else {
+      free_ImageFileName_on_exit = 1;
+    }
+
+  if (status)
+    if (RtlUnicodeStringToAnsiString(&CommandLine, CreateInfo->CommandLine, TRUE) != STATUS_SUCCESS) {
+      InjDbgPrint("Failed to convert CommandLine to ANSI_STRING\n");
+      status = 0;
+    }
+    else {
+      free_CommandLine_on_exit = 1;
+    }
+
+  if (status) {
+    ImageFileName.Buffer[ImageFileName.Length] = '\0';
+    CommandLine.Buffer[CommandLine.Length] = '\0';
+    InjDbgPrint("Process Creation Notification: NAME=%s, CMD=%s\n", ImageFileName.Buffer, CommandLine.Buffer);
+  }
+
+  if (free_ImageFileName_on_exit) {
+    RtlFreeAnsiString(&ImageFileName);
+  }
+
+  if (free_CommandLine_on_exit) {
+    RtlFreeAnsiString(&CommandLine);
+  }
+ 
+  return 0;
+}
+
 VOID
 NTAPI
 InjCreateProcessNotifyRoutineEx(
@@ -1284,18 +1330,23 @@ InjCreateProcessNotifyRoutineEx(
   _Inout_opt_ PPS_CREATE_NOTIFY_INFO CreateInfo
   )
 {
-  int single_inject = 1;
-  const char* target_process = "notepad.exe";
+  /*int single_inject = 1;
+  const char* target_process = "tasklist.exe";
   InjDbgPrint("Process Creation Notification: NAME=%s", PsGetProcessImageFileName(Process));
   if (single_inject && strcmp(PsGetProcessImageFileName(Process), target_process) != 0) {
     InjDbgPrint("Not %s, will ignore it.", target_process);
     return;
-  }
+  }*/
+
+  
 
   UNREFERENCED_PARAMETER(Process);
 
   if (CreateInfo)
   {
+    if (!should_inject(CreateInfo)) {
+      return;
+    }
     InjCreateInjectionInfo(NULL, ProcessId);
   }
   else
