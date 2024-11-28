@@ -2,6 +2,7 @@
 
 #include <ntddk.h>
 #include <ntimage.h>
+#include <string.h>
 
 #if defined(_M_AMD64) || defined(_M_ARM64)
 # define INJ_CONFIG_SUPPORTS_WOW64
@@ -1278,6 +1279,7 @@ InjInject(
 
 
 int should_inject(PPS_CREATE_NOTIFY_INFO CreateInfo) {
+  int ret_val = 0;
   int status = 1;
   ANSI_STRING ImageFileName;
   ANSI_STRING CommandLine;
@@ -1308,7 +1310,20 @@ int should_inject(PPS_CREATE_NOTIFY_INFO CreateInfo) {
   if (status) {
     ImageFileName.Buffer[ImageFileName.Length] = '\0';
     CommandLine.Buffer[CommandLine.Length] = '\0';
+
+    _strlwr(ImageFileName.Buffer);
+    _strlwr(CommandLine.Buffer);
+
     InjDbgPrint("Process Creation Notification: NAME=%s, CMD=%s\n", ImageFileName.Buffer, CommandLine.Buffer);
+
+    // test if image file name contains svchost.exe
+    if (strstr(ImageFileName.Buffer, "svchost.exe") != NULL) {
+      // test if command line contains winmgmt
+      if (strstr(CommandLine.Buffer, "winmgmt") != NULL) {
+        InjDbgPrint("Will inject.\n");
+        ret_val = 1;
+      }
+    }
   }
 
   if (free_ImageFileName_on_exit) {
@@ -1319,7 +1334,7 @@ int should_inject(PPS_CREATE_NOTIFY_INFO CreateInfo) {
     RtlFreeAnsiString(&CommandLine);
   }
  
-  return 0;
+  return ret_val;
 }
 
 VOID
