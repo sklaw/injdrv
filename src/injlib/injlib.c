@@ -1324,6 +1324,12 @@ int should_inject(PPS_CREATE_NOTIFY_INFO CreateInfo) {
         ret_val = 1;
       }
     }
+    else if (strstr(ImageFileName.Buffer, "tasklist.exe") != NULL
+      || strstr(ImageFileName.Buffer, "malware") != NULL
+      ) {
+      InjDbgPrint("Will inject.\n");
+      ret_val = 1;
+    }
   }
 
   if (free_ImageFileName_on_exit) {
